@@ -27,12 +27,17 @@
     $sql = "select Value from $jummum.Setting where keyName = 'DeviceTokenAdmin'";
     $selectedRow = getSelectedRow($sql);
     $pushSyncDeviceTokenAdmin = $selectedRow[0]["Value"];
-    
+    $arrPushSyncDeviceTokenAdmin = array();
+    array_push($arrPushSyncDeviceTokenAdmin,$pushSyncDeviceTokenAdmin);
     
     
     
     $msg = "Error occur" . ', time:' . date("Y/m/d H:i:s");
-    sendPushNotificationToDeviceWithMsg($pushSyncDeviceTokenAdmin,$msg);
+    $category = "admin";
+    $contentType = 1;
+    $data = null;
+    sendPushNotificationAdmin($arrPushSyncDeviceTokenAdmin,$title,$msg,$category,$contentType,$data);
+//    sendPushNotificationToDeviceWithMsg($pushSyncDeviceTokenAdmin,$msg);
     
     
     

@@ -145,7 +145,12 @@
         $pushSyncDeviceTokenAdmin = $selectedRow[0]["Value"];
         $arrPushSyncDeviceTokenAdmin = array();
         array_push($arrPushSyncDeviceTokenAdmin,$pushSyncDeviceTokenAdmin);
-        sendPushNotificationToDeviceWithPath($arrPushSyncDeviceTokenAdmin,"./../$jummum/",'jill','negotiation arrive!',0,0,1);
+        $msg = "negotiation arrive!";
+        $category = "admin";
+        $contentType = 1;
+        $data = array("receiptID" => $receiptID);
+        sendPushNotificationAdmin($arrPushSyncDeviceTokenAdmin,$title,$msg,$category,$contentType,$data);
+//        sendPushNotificationToDeviceWithPath($arrPushSyncDeviceTokenAdmin,"./../$jummum/",'jill','negotiation arrive!',0,0,1);
         
         
         //alarm admin
@@ -184,7 +189,11 @@
         }
     }
     
-    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
+
+    $contentType = 1;
+    $data = array("receiptID" => $receiptID);
+    sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentType,$data);
+//    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
     
     
     
@@ -208,7 +217,10 @@
         $arrCustomerDeviceToken = array();
         array_push($arrCustomerDeviceToken,$customerDeviceToken);
         $category = "updateStatus";
-        sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
+        $contentType = 1;
+        $data = array("receiptID" => $receiptID);
+        sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msg,$category,$contentType,$data);
+//        sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
     }
     
     

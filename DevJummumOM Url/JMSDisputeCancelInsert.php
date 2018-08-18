@@ -107,9 +107,13 @@
             }
         }
         
+        
         $msg = "Order cancelled";
         $category = "clear";
-        sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
+        $contentType = 1;
+        $data = array("receiptID" => $receiptID);
+        sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentType,$data);
+//        sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
         
         
         
@@ -134,7 +138,10 @@
             $arrCustomerDeviceToken = array();
             array_push($arrCustomerDeviceToken,$customerDeviceToken);
             $category = "updateStatus";
-            sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
+            $contentType = 1;
+            $data = array("receiptID" => $receiptID);
+            sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msg,$category,$contentType,$data);
+//            sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
         }
         
     }

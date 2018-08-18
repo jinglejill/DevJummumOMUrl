@@ -82,7 +82,10 @@
     
     $msg = "";
     $category = "openingTime";
-    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$settingID,$category,1);
+    $contentType = 1;
+    $data = null;
+    sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentType,$data);
+//    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$settingID,$category,1);
     
     
     

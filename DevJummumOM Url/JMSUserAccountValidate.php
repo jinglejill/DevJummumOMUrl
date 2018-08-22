@@ -20,7 +20,15 @@
         $modifiedUser = $_POST["modifiedUser"];
         $modifiedDate = $_POST["modifiedDate"];
     }
-    
+    if(isset($_POST["deviceID"]) && isset($_POST["deviceToken"]) && isset($_POST["model"]) && isset($_POST["remark"]) && isset($_POST["modifiedUser"]) && isset($_POST["modifiedDate"]))
+    {
+        $deviceID = $_POST["deviceID"];
+        $deviceToken = $_POST["deviceToken"];
+        $model = $_POST["model"];
+        $remark = $_POST["remark"];
+        $modifiedUser = $_POST["modifiedUser"];
+        $modifiedDate = $_POST["modifiedDate"];
+    }
     
     
     // Check connection
@@ -131,7 +139,7 @@
             
             
             //query statement
-            $sql = "insert into $dbName.`Device` (`DeviceToken`, `Remark`) values('$deviceToken','$remark')";
+            $sql = "insert into $dbName.Device(DeviceToken, Model, Remark, ModifiedUser, ModifiedDate) values ('$deviceToken', '$model', '$remark', '$modifiedUser', '$modifiedDate')";
             $ret = doQueryTask($sql);
             if($ret != "")
             {
@@ -159,7 +167,7 @@
         
         
         //query statement
-        $sql = "insert into $dbName.`Device` (`DeviceToken`, `Remark`) values('$deviceToken','$remark')";
+        $sql = "insert into $dbName.Device(DeviceToken, Model, Remark, ModifiedUser, ModifiedDate) values ('$deviceToken', '$model', '$remark', '$modifiedUser', '$modifiedDate')";
         $ret = doQueryTask($sql);
         if($ret != "")
         {

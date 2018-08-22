@@ -63,6 +63,8 @@
         echo json_encode($ret);
         exit();
     }
+    mysqli_commit($con);
+    
     
 
     
@@ -82,9 +84,9 @@
     
     $msg = "";
     $category = "openingTime";
-    $contentType = 1;
-    $data = null;
-    sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentType,$data);
+    $contentAvailable = 1;
+    $data = array("settingID" => $settingID);
+    sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentAvailable,$data);
 //    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$settingID,$category,1);
     
     

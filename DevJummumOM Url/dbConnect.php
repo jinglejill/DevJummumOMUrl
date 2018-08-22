@@ -1,5 +1,5 @@
 <?php
-    
+    include_once("./../../NeedUpdateVersion/JMSNeedUpdateVersion.php");
     
     //conection variable
     $con;
@@ -13,8 +13,48 @@
     $jummumCkPass = "jill";
     $jummumOMCkPath = "./../$jummumOM/";
     $jummumOMCkPass = "jill";
-    $jummumAdminCkPath = "./../jummumAdmin/";
-    $jummumAdminCkPass = "jill";
+    $adminCkPath = "./../../AdminApp/";
+    $adminCkPass = "jill";
+    $bundleID = "com.JummumCo.JummumShop";
+    
+    
+    function isNeedUpdateVersion()
+    {
+        global $bundleID;
+        global $needUpdateVersion;
+        
+        // create curl resource
+        $ch = curl_init();
+        
+        // set url
+//        curl_setopt($ch, CURLOPT_URL, "http://www.jummum.co/DEV/DEV_JUMMUM_OM/test.php");
+        curl_setopt($ch, CURLOPT_URL, "http://itunes.apple.com/lookup?bundleId=$bundleID");
+        
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        
+        // $output contains the output string
+        $output = curl_exec($ch);
+        
+        // close curl resource to free up system resources
+        curl_close($ch);
+        
+        $result = json_decode($output,true);
+        
+        if($result["resultCount"]==1)
+        {
+            $appStoreVersion = $result[@"results"][0][@"version"];
+            writeToLog("appStoreVersion: " . $appStoreVersion);
+            writeToLog("needUpdateVersion: " . $needUpdateVersion);
+            if($appStoreVersion == $needUpdateVersion)
+            {
+                writeToLog("new appStore version coming, user: " . $_POST['modifiedUser']);
+                $response = array('status' => '3');
+                echo json_encode($response);
+                exit();
+            }
+        }
+    }
     
     function generate_strings($number, $length) {
         
@@ -140,11 +180,41 @@
         }
     }
 
+    function setConnectionValueWithoutCheckUpdate($dbName)
+    {
+        global $con;
+        global $jummumOM;
+        global $checkUpdate;
+        
+        
+        if($_GET['dbName'])
+        {
+            $dbName = $_GET['dbName'];
+        }
+        
+        
+        if($dbName == "")
+        {
+            $dbName = $jummumOM;
+        }
+        
+        
+        // Create connection
+        //        $con=mysqli_connect("localhost","FFD","123456",$dbName);
+        $con=mysqli_connect("localhost","andAdmin","111111",$dbName);
+        
+        
+        $timeZone = mysqli_query($con,"SET SESSION time_zone = '+07:00'");
+        mysqli_set_charset($con, "utf8");
+        
+    }
+    
     function setConnectionValue($dbName)
     {
         global $con;
         global $jummumOM;
-        
+        global $checkUpdate;
+    
         
         if($_GET['dbName'])
         {
@@ -166,6 +236,11 @@
         $timeZone = mysqli_query($con,"SET SESSION time_zone = '+07:00'");
         mysqli_set_charset($con, "utf8");
         
+        
+        if($checkUpdate)
+        {
+            isNeedUpdateVersion();
+        }
     }
     
     function getDeviceTokenFromUsername($user)
@@ -331,8 +406,11 @@
         sendPushNotification($deviceToken, $paramBody);
     }
     
-    function sendPushNotificationAdmin($deviceToken,$title,$text,$category,$contentType,$data)
+    function sendPushNotificationAdmin($deviceToken,$title,$text,$category,$contentAvailable,$data)
     {
+        writeToLog("send push to admin $jummum");
+        global $adminCkPath;
+        global $adminCkPass;
         foreach($deviceToken as $eachDeviceToken)
         {
             if(strlen($eachDeviceToken) == 64)
@@ -345,13 +423,30 @@
                 {
                     $paramBody["category"] = $category;
                 }
-                if($msg != '')
+                if($text != '')
                 {
                     $paramBody["alert"] = $text;
                     $paramBody["sound"] = "default";
                 }
                 
-                sendPushNotificationWithPath($eachDeviceToken, $paramBody, $jummumAdminCkPath, $jummumAdminCkPass);
+                
+                //----in the period of user use old version, we need to send receiptID key
+                if($data)
+                {
+                    $receiptID = $data["receiptID"];
+                    if(!$receiptID)
+                    {
+                        $receiptID = $data["settingID"];
+                    }
+                }
+                if($receiptID)
+                {
+                    $paramBody["receiptID"] = $receiptID;
+                }
+                //----------------
+                
+                
+                sendPushNotificationWithPath($eachDeviceToken, $paramBody, $adminCkPath, $adminCkPass);
             }
             else
             {
@@ -361,8 +456,11 @@
         }
     }
     
-    function sendPushNotificationJummum($deviceToken,$title,$text,$category,$contentType,$data)
+    function sendPushNotificationJummum($deviceToken,$title,$text,$category,$contentAvailable,$data)
     {
+        writeToLog("send push to $jummum");
+        global $jummumCkPath;
+        global $jummumCkPass;
         foreach($deviceToken as $eachDeviceToken)
         {
             if(strlen($eachDeviceToken) == 64)
@@ -375,24 +473,44 @@
                 {
                     $paramBody["category"] = $category;
                 }
-                if($msg != '')
+                if($text != '')
                 {
                     $paramBody["alert"] = $text;
                     $paramBody["sound"] = "default";
                 }
+                
+                
+                //----in the period of user use old version, we need to send receiptID key
+                if($data)
+                {
+                    $receiptID = $data["receiptID"];
+                    if(!$receiptID)
+                    {
+                        $receiptID = $data["settingID"];
+                    }
+                }
+                if($receiptID)
+                {
+                    $paramBody["receiptID"] = $receiptID;
+                }
+                //----------------
+                
                 
                 sendPushNotificationWithPath($eachDeviceToken, $paramBody, $jummumCkPath, $jummumCkPass);
             }
             else
             {
-                $key = "AAAAXP_MM2Y:APA91bEb4yFGMlfXF-lnsEfh1dxAflVdmWW5-3FWQDBpEoyerj3a5U0YT68gjGk3oFkf4P8F5831f5AiowJuYDCsHNMwF0z6d1FPy33-p_YqejhlO-dRjNHo7aJAMasNtoEODxrkiYUHuIRBfganw5kolkL9TOvAhg";
+                $key = "AAAAhj_r0Xo:APA91bFiPHqZ1IpNg3cuNNYoLsywATDryqawmb0lAUaorj6Gsdlo-NTas3MwwerJ-RcKnjCfzV3zxGHa5K7i-GKjeJcG97t9IfNQd0AngCXD3UvL7ihakfZ8l1w2zMTMhAB_75WHMIXNnyJ0CCtZqt4u4LHAEfetGQ";
                 sendFirebasePushNotification($eachDeviceToken,"",$msg,$data,$key);
             }
         }
     }
     
-    function sendPushNotificationJummumOM($deviceToken,$title,$text,$category,$contentType,$data)
+    function sendPushNotificationJummumOM($deviceToken,$title,$text,$category,$contentAvailable,$data)
     {
+        writeToLog("send push to $jummumOM");
+        global $jummumOMCkPath;
+        global $jummumOMCkPass;
         foreach($deviceToken as $eachDeviceToken)
         {
             if(strlen($eachDeviceToken) == 64)
@@ -404,7 +522,7 @@
                 {
                     $paramBody["category"] = $category;
                 }
-                if($msg != '')
+                if($text != '')
                 {
                     $paramBody["alert"] = $text;
                     $paramBody["sound"] = "default";
@@ -413,11 +531,38 @@
                 {
                     $paramBody["data"] = $data;
                 }
+                
+                
+                //----in the period of user use old version, we need to send receiptID key
+                if($data)
+                {
+                    $receiptID = $data["receiptID"];
+                    if(!$receiptID)
+                    {
+                        $receiptID = $data["settingID"];
+                    }
+                }
+                if($receiptID)
+                {
+                    $paramBody["receiptID"] = $receiptID;
+                }
+                //----------------
+                
+                
                 sendPushNotificationWithPath($eachDeviceToken, $paramBody, $jummumOMCkPath, $jummumOMCkPass);
+                
+                
+                //----in the period of user use old version, we need to send receiptID key
+                if($category == "updateStatus")
+                {
+                    $paramBody["category"] = "cancelOrder";
+                    sendPushNotificationWithPath($eachDeviceToken, $paramBody, $jummumOMCkPath, $jummumOMCkPass);
+                }
+                //----------------
             }
             else
             {
-                $key = "AAAAXP_MM2Y:APA91bEb4yFGMlfXF-lnsEfh1dxAflVdmWW5-3FWQDBpEoyerj3a5U0YT68gjGk3oFkf4P8F5831f5AiowJuYDCsHNMwF0z6d1FPy33-p_YqejhlO-dRjNHo7aJAMasNtoEODxrkiYUHuIRBfganw5kolkL9TOvAhg";
+                $key = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
                 sendFirebasePushNotification($eachDeviceToken,"",$msg,$data,$key);
             }
         }
@@ -505,34 +650,6 @@
     function getSelectedRow($sql)
     {
         global $con;
-        if ($result = mysqli_query($con, $sql))
-        {
-            $resultArray = array();
-            $tempArray = array();
-            
-            while($row = mysqli_fetch_array($result))
-            {
-                $tempArray = $row;
-                array_push($resultArray, $tempArray);
-            }
-            mysqli_free_result($result);
-        }
-        if(sizeof($resultArray) == 0)
-        {
-            $error = "query: selected row count = 0, sql: " . $sql . ", modified user: " . $_POST["modifiedUser"];
-            writeToLog($error);
-        }
-        else
-        {
-            writeToLog("query success, sql: " . $sql . ", modified user: " . $_POST["modifiedUser"]);
-        }
-        
-        return $resultArray;
-    }
-    
-    function getSelectedRow($sql)
-    {
-        global $con;        
         if ($result = mysqli_query($con, $sql))
         {
             $resultArray = array();

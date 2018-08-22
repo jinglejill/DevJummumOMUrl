@@ -52,6 +52,7 @@
         }
         
         $msg = "Order cancelled";
+        $msgCust = $msg;
         $category = "clear";
     }
     else if($status == 10)
@@ -64,11 +65,12 @@
         }
         
         $msg = "Order dispute finished";
+        $msgCust = $msg;
         $category = "clear";
     }
     else if($status == 11)
     {
-        $sql = "select * from receipt where receiptID = '$receiptID' and status in ('7','8')";
+        $sql = "select * from receipt where receiptID = '$receiptID' and status in ('8')";
         $selectedRow = getSelectedRow($sql);
         if(sizeof($selectedRow) == 0)
         {
@@ -76,7 +78,8 @@
         }
         
         $msg = "Negotiate request";
-        $category = "cancelOrder";
+        $msgCust = "";
+        $category = "updateStatus";
     }
     else if($status == 14)
     {
@@ -88,6 +91,7 @@
         }
         
         $msg = "Order dispute finished";
+        $msgCust = $msg;
         $category = "clear";
     }
 
@@ -112,48 +116,24 @@
     $selectedRow = getSelectedRow($sql);
     if(sizeof($selectedRow)==0)
     {
-//        $sql = "select UrlNoti,AlarmShop from $jummumOM.branch where branchID = '$branchID'";
-//        $selectedRow = getSelectedRow($sql);
-//        $urlNoti = $selectedRow[0]["UrlNoti"];
-//        $alarmShop = $selectedRow[0]["AlarmShop"];
-//        if($alarmShop == 1)
+        //alarmShopOff
+        //query statement
+        $ledStatus = 0;
+        $sql = "update $jummumOM.Branch set LedStatus = '$ledStatus', ModifiedUser = '$modifiedUser', ModifiedDate = '$modifiedDate' where branchID = '$branchID';";
+        $ret = doQueryTask($sql);
+        if($ret != "")
         {
-            //alarmShopOff
-            //query statement
-            $ledStatus = 0;
-            $sql = "update $jummumOM.Branch set LedStatus = '$ledStatus', ModifiedUser = '$modifiedUser', ModifiedDate = '$modifiedDate' where branchID = '$branchID';";
-            $ret = doQueryTask($sql);
-            if($ret != "")
-            {
-                mysqli_rollback($con);
-                //        putAlertToDevice();
-                echo json_encode($ret);
-                exit();
-            }
+            mysqli_rollback($con);
+            //        putAlertToDevice();
+            echo json_encode($ret);
+            exit();
         }
     }
     
     
-    
-    
+    //alarm admin
     if($status == 11)
     {
-        
-        //get pushSync Device in jummum
-        $sql = "select * from setting where KeyName = 'DeviceTokenAdmin'";
-        $selectedRow = getSelectedRow($sql);
-        $pushSyncDeviceTokenAdmin = $selectedRow[0]["Value"];
-        $arrPushSyncDeviceTokenAdmin = array();
-        array_push($arrPushSyncDeviceTokenAdmin,$pushSyncDeviceTokenAdmin);
-        $msg = "negotiation arrive!";
-        $category = "admin";
-        $contentType = 1;
-        $data = array("receiptID" => $receiptID);
-        sendPushNotificationAdmin($arrPushSyncDeviceTokenAdmin,$title,$msg,$category,$contentType,$data);
-//        sendPushNotificationToDeviceWithPath($arrPushSyncDeviceTokenAdmin,"./../$jummum/",'jill','negotiation arrive!',0,0,1);
-        
-        
-        //alarm admin
         $sql = "select * from setting where keyName = 'AlarmAdmin'";
         $selectedRow = getSelectedRow($sql);
         $alarmAdmin = $selectedRow[0]["Value"];
@@ -173,6 +153,56 @@
             }
         }
     }
+    mysqli_commit($con);
+    
+    
+    
+    if($status == 11)
+    {
+        //get pushSync Device in jummum
+        $sql = "select * from setting where KeyName = 'DeviceTokenAdmin'";
+        $selectedRow = getSelectedRow($sql);
+        $arrPushSyncDeviceTokenAdmin = array();
+        for($i=0; $i<sizeof($selectedRow); $i++)
+        {
+            $pushSyncDeviceTokenAdmin = $selectedRow[$i]["Value"];
+            array_push($arrPushSyncDeviceTokenAdmin,$pushSyncDeviceTokenAdmin);
+        }
+        
+        $msg = "negotiation arrive!";
+        $category = "admin";
+        $contentAvailable = 1;
+        $data = array("receiptID" => $receiptID);
+        sendPushNotificationAdmin($arrPushSyncDeviceTokenAdmin,$title,$msg,$category,$contentAvailable,$data);
+//        sendPushNotificationToDeviceWithPath($arrPushSyncDeviceTokenAdmin,"./../$jummum/",'jill','negotiation arrive!',0,0,1);
+    }
+    else
+    {
+        //send noti to customer
+        $sql = "select * from Receipt where receiptID = '$receiptID';";
+        $selectedRow = getSelectedRow($sql);
+        $memberID = $selectedRow[0]["MemberID"];
+        
+        
+        $sql = "select login.DeviceToken,login.ModifiedDate,login.Username from useraccount left join login on useraccount.username = login.username where useraccount.UserAccountID = '$memberID' and login.status = '1' order by login.modifiedDate desc;";
+        $selectedRow = getSelectedRow($sql);
+        $customerDeviceToken = $selectedRow[0]["DeviceToken"];
+        $logInModifiedDate = $selectedRow[0]["ModifiedDate"];
+        $logInUsername = $selectedRow[0]["Username"];
+        $sql = "select * from login where DeviceToken = '$customerDeviceToken' and Username != '$logInUsername' and status = 1 and modifiedDate > '$logInModifiedDate';";
+        $selectedRow = getSelectedRow($sql);
+        if(sizeof($selectedRow) == 0)
+        {
+            $arrCustomerDeviceToken = array();
+            array_push($arrCustomerDeviceToken,$customerDeviceToken);
+            $category = "updateStatus";
+            $contentAvailable = 1;
+            $data = array("receiptID" => $receiptID);
+            sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msgCust,$category,$contentAvailable,$data);
+            //        sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
+        }
+    }
+    
     
     
     //push sync to other device
@@ -190,45 +220,17 @@
     }
     
 
-    $contentType = 1;
+    $contentAvailable = 1;
     $data = array("receiptID" => $receiptID);
-    sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentType,$data);
+    sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentAvailable,$data);
 //    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
     
     
     
     
+   
     
-    //send noti to customer
-    $sql = "select * from Receipt where receiptID = '$receiptID';";
-    $selectedRow = getSelectedRow($sql);
-    $memberID = $selectedRow[0]["MemberID"];
-    
-    
-    $sql = "select login.DeviceToken,login.ModifiedDate,login.Username from useraccount left join login on useraccount.username = login.username where useraccount.UserAccountID = '$memberID' and login.status = '1' order by login.modifiedDate desc;";
-    $selectedRow = getSelectedRow($sql);
-    $customerDeviceToken = $selectedRow[0]["DeviceToken"];
-    $logInModifiedDate = $selectedRow[0]["ModifiedDate"];
-    $logInUsername = $selectedRow[0]["Username"];
-    $sql = "select * from login where DeviceToken = '$customerDeviceToken' and Username != '$logInUsername' and status = 1 and modifiedDate > '$logInModifiedDate';";
-    $selectedRow = getSelectedRow($sql);
-    if(sizeof($selectedRow) == 0)
-    {
-        $arrCustomerDeviceToken = array();
-        array_push($arrCustomerDeviceToken,$customerDeviceToken);
-        $category = "updateStatus";
-        $contentType = 1;
-        $data = array("receiptID" => $receiptID);
-        sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msg,$category,$contentType,$data);
-//        sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
-    }
-    
-    
-    
-    
-    
-    
-    
+   
     
     
     //dataJson
@@ -239,7 +241,7 @@
     
     
     //do script successful
-    mysqli_commit($con);
+    
     mysqli_close($con);
     
     

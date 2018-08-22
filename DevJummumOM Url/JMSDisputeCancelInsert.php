@@ -77,18 +77,31 @@
         
         
         
-        
-        
-        
-        
-        //do script successful
+        //    2,5,7,8,13
+        $sql = "select receipt.* from receipt where receipt.branchID = '$branchID' and status in (2,5,7,8,13)";
+        $selectedRow = getSelectedRow($sql);
+        if(sizeof($selectedRow)==0)
+        {
+            $sql = "select UrlNoti,AlarmShop from $jummumOM.branch where branchID = '$branchID'";
+            $selectedRow = getSelectedRow($sql);
+            
+            //alarmShopOff
+            //query statement
+            $ledStatus = 0;
+            $sql = "update $jummumOM.Branch set LedStatus = '$ledStatus', ModifiedUser = '$modifiedUser', ModifiedDate = '$modifiedDate' where branchID = '$branchID';";
+            $ret = doQueryTask($sql);
+            if($ret != "")
+            {
+                mysqli_rollback($con);
+                //        putAlertToDevice();
+                echo json_encode($ret);
+                exit();
+            }
+        }
         mysqli_commit($con);
         
         
-        /* execute multi query */
-        $sql = "select * from receipt where receiptID = '$receiptID';";
-        $sql .= "Select * from Dispute where receiptID = '$receiptID' and disputeID = '$disputeID';";
-        $dataJson = executeMultiQueryArray($sql);
+        
         
         
         
@@ -110,9 +123,9 @@
         
         $msg = "Order cancelled";
         $category = "clear";
-        $contentType = 1;
+        $contentAvailable = 1;
         $data = array("receiptID" => $receiptID);
-        sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentType,$data);
+        sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentAvailable,$data);
 //        sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
         
         
@@ -138,16 +151,22 @@
             $arrCustomerDeviceToken = array();
             array_push($arrCustomerDeviceToken,$customerDeviceToken);
             $category = "updateStatus";
-            $contentType = 1;
+            $contentAvailable = 1;
             $data = array("receiptID" => $receiptID);
-            sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msg,$category,$contentType,$data);
+            sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msg,$category,$contentAvailable,$data);
 //            sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
         }
         
+        
+        
+        /* execute multi query */
+        $sql = "select * from receipt where receiptID = '$receiptID';";
+        $sql .= "Select * from Dispute where receiptID = '$receiptID' and disputeID = '$disputeID';";
+        $dataJson = executeMultiQueryArray($sql);
     }
     else
     {
-        mysqli_commit($con);
+        
         
         
         /* execute multi query */
@@ -160,7 +179,7 @@
     
     
     
-    
+    mysqli_commit($con);
     mysqli_close($con);
     writeToLog("query commit, file: " . basename(__FILE__) . ", user: " . $_POST['modifiedUser']);
     $response = array('status' => '1', 'sql' => $sql, 'tableName' => 'Receipt', 'dataJson' => $dataJson);

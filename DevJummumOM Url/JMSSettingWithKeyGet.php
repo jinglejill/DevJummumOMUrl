@@ -1,15 +1,14 @@
 <?php
     include_once("dbConnect.php");
-    setConnectionValue("");
+    setConnectionValueWithoutCheckUpdate("");
     writeToLog("file: " . basename(__FILE__) . ", user: " . $_POST["modifiedUser"]);
     printAllPost();
     
     
     
-    if(isset ($_POST["branchID"]) && isset($_POST["settingID"]))
+    if(isset($_POST["keyName"]))
     {
-        $branchID = $_POST["branchID"];
-        $settingID = $_POST["settingID"];
+        $keyName = $_POST["keyName"];
     }
     
     
@@ -23,16 +22,10 @@
     
     
     
-    //get current dbName and set connection
-    $sql = "select * from $jummumOM.branch where branchID = '$branchID'";
-    $selectedRow = getSelectedRow($sql);
-    $dbName = $selectedRow[0]["DbName"];
-    setConnectionValue($dbName);
-    
     
     
     //-----
-    $sql = "select * from setting where settingID = '$settingID';";
+    $sql = "select * from setting where keyName = '$keyName';";
     
     
     /* execute multi query */

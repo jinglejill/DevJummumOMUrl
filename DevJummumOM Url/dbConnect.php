@@ -16,6 +16,9 @@
     $adminCkPath = "./../../AdminApp/";
     $adminCkPass = "jill";
     $bundleID = "com.JummumCo.JummumShop";
+    $firebaseKeyJummum = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
+    $firebaseKeyJummumOM = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
+    $firebaseKeyAdmin = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
     
     
     function isNeedUpdateVersion()
@@ -450,7 +453,7 @@
             }
             else
             {
-                $key = "AAAAXP_MM2Y:APA91bEb4yFGMlfXF-lnsEfh1dxAflVdmWW5-3FWQDBpEoyerj3a5U0YT68gjGk3oFkf4P8F5831f5AiowJuYDCsHNMwF0z6d1FPy33-p_YqejhlO-dRjNHo7aJAMasNtoEODxrkiYUHuIRBfganw5kolkL9TOvAhg";
+                $key = $firebaseKeyAdmin;
                 sendFirebasePushNotification($eachDeviceToken,"",$msg,$data,$key);
             }
         }
@@ -500,7 +503,7 @@
             }
             else
             {
-                $key = "AAAAhj_r0Xo:APA91bFiPHqZ1IpNg3cuNNYoLsywATDryqawmb0lAUaorj6Gsdlo-NTas3MwwerJ-RcKnjCfzV3zxGHa5K7i-GKjeJcG97t9IfNQd0AngCXD3UvL7ihakfZ8l1w2zMTMhAB_75WHMIXNnyJ0CCtZqt4u4LHAEfetGQ";
+                $key = $firebaseKeyJummum;
                 sendFirebasePushNotification($eachDeviceToken,"",$msg,$data,$key);
             }
         }
@@ -562,7 +565,7 @@
             }
             else
             {
-                $key = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
+                $key = $firebaseKeyJummumOM;
                 sendFirebasePushNotification($eachDeviceToken,"",$msg,$data,$key);
             }
         }

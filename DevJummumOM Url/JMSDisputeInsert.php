@@ -135,7 +135,6 @@
     $contentAvailable = 1;
     $data = array("receiptID" => $receiptID);
     sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentAvailable,$data);
-//    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
     
     
     
@@ -162,7 +161,6 @@
         $contentAvailable = 1;
         $data = array("receiptID" => $receiptID);
         sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msg,$category,$contentAvailable,$data);
-//        sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
     }
     
     

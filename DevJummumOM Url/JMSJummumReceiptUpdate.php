@@ -174,7 +174,6 @@
         $contentAvailable = 1;
         $data = array("receiptID" => $receiptID);
         sendPushNotificationAdmin($arrPushSyncDeviceTokenAdmin,$title,$msg,$category,$contentAvailable,$data);
-//        sendPushNotificationToDeviceWithPath($arrPushSyncDeviceTokenAdmin,"./../$jummum/",'jill','negotiation arrive!',0,0,1);
     }
     else
     {
@@ -199,7 +198,6 @@
             $contentAvailable = 1;
             $data = array("receiptID" => $receiptID);
             sendPushNotificationJummum($arrCustomerDeviceToken,$title,$msgCust,$category,$contentAvailable,$data);
-            //        sendPushNotificationToDeviceWithPath($arrCustomerDeviceToken,"./../$jummum/",'jill',$msg,$receiptID,$category,1);
         }
     }
     
@@ -223,7 +221,6 @@
     $contentAvailable = 1;
     $data = array("receiptID" => $receiptID);
     sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentAvailable,$data);
-//    sendPushNotificationToDeviceWithPath($pushSyncDeviceTokenReceiveOrder,'./','jill',$msg,$receiptID,$category,1);
     
     
     

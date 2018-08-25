@@ -1,13 +1,10 @@
 <?php
-    include_once("./../../NeedUpdateVersion/JMSNeedUpdateVersion.php");
+    include_once("./../../NeedUpdateVersionDev/JMSNeedUpdateVersion.php");
     
     //conection variable
     $con;
     $jummum = "DEV_JUMMUM";
     $jummumOM = "DEV_JUMMUM_OM";
-    $urlPath = "DEV/";
-    $jummumPath = "$urlPath$jummum/";
-    $jummumOMPath = "$urlPath$jummumOM/";
     $encryptKey = "jmmom";
     $jummumCkPath = "./../$jummum/";
     $jummumCkPass = "jill";
@@ -15,9 +12,9 @@
     $jummumOMCkPass = "jill";
     $adminCkPath = "./../../AdminApp/";
     $adminCkPass = "jill";
-    $bundleID = "com.JummumCo.JummumShop";
-    $firebaseKeyJummum = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
-    $firebaseKeyJummumOM = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
+    $bundleID = "com.JummumCo.DevJummumOM";
+    $firebaseKeyJummum = "AAAAz3AS81k:APA91bFKi3sIJEGKHaugE1gSB0i0MHio4W4EnOrrvOWzL9lPufo7ZKrinuhnQlUyGGLwx0925AGW5FvJ5xI2cKiuwU2rSsDGMQzT7-DEKviu2Y3OgHcFqpagJSu9j2qAAJVOAu9hSZf6sxOmcMJEcJrQVJGKGlJhPQ";
+    $firebaseKeyJummumOM = "AAAAs8VRTGE:APA91bHeKIqzV7q7aQgoSqefRR7kyGwW7OCcpwsX5o_pu4eMbCTidNe3SU-8YB_2u-W1kD2yLlA4RTXGe4_HGXnFPri9OrFT-fCIjpXtIraxLMaMsQiGmJtVnSzRKaI9Tbh5UZSkjoqYFrymtdZGQYyxz-NNr4f4dQ";
     $firebaseKeyAdmin = "AAAAulrZL7w:APA91bFoAJOcDaZSmiPnT2X2MyC18b95x0j09CiuRqbeo4o0MXvzWWmdsVwKfL6ZyLaEHZ1drMHNG1OZBoWOKWtpDDHKzH0UU3lLy-kly52riEtZ1Az_HZIqCOnrnHGTICXi49Whi8_5EB99X6z81QiBT3j0YmnAIA";
     
     
@@ -825,12 +822,12 @@
 
         if(!$pushFail)
         {
-            $fp = stream_socket_client(
-                                       'ssl://gateway.sandbox.push.apple.com:2195', $err,
-                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
 //            $fp = stream_socket_client(
-//                                       'ssl://gateway.push.apple.com:2195', $err,
+//                                       'ssl://gateway.sandbox.push.apple.com:2195', $err,
 //                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+            $fp = stream_socket_client(
+                                       'ssl://gateway.push.apple.com:2195', $err,
+                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
         }
         
         
@@ -879,12 +876,12 @@
         
         if(!$pushFail)
         {
-            $fp = stream_socket_client(
-                                       'ssl://gateway.sandbox.push.apple.com:2195', $err,
-                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
-            //            $fp = stream_socket_client(
-            //                                       'ssl://gateway.push.apple.com:2195', $err,
-            //                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+//            $fp = stream_socket_client(
+//                                       'ssl://gateway.sandbox.push.apple.com:2195', $err,
+//                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+                        $fp = stream_socket_client(
+                                                   'ssl://gateway.push.apple.com:2195', $err,
+                                                   $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
         }
         
         
@@ -931,12 +928,12 @@
         
         if(!$pushFail)
         {
-            $fp = stream_socket_client(
-                                       'ssl://gateway.sandbox.push.apple.com:2195', $err,
-                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
 //            $fp = stream_socket_client(
-//                                       'ssl://gateway.push.apple.com:2195', $err,
+//                                       'ssl://gateway.sandbox.push.apple.com:2195', $err,
 //                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
+            $fp = stream_socket_client(
+                                       'ssl://gateway.push.apple.com:2195', $err,
+                                       $errstr, 60, STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT, $ctx);
         }
         
         
@@ -971,7 +968,7 @@
 
     function sendEmail($toAddress,$subject,$body)
     {
-        require './../phpmailermaster/PHPMailerAutoload.php';
+        require './../../phpmailermaster/PHPMailerAutoload.php';
         $mail = new PHPMailer;
 //        writeToLog("phpmailer");
         //$mail->SMTPDebug = 3;                               // Enable verbose debug output

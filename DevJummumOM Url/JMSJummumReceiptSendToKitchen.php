@@ -97,9 +97,6 @@
     $selectedRow = getSelectedRow($sql);
     if(sizeof($selectedRow)==0)
     {
-        $sql = "select UrlNoti,AlarmShop from $jummumOM.branch where branchID = '$branchID'";
-        $selectedRow = getSelectedRow($sql);
-        
         //alarmShopOff
         //query statement
         $ledStatus = 0;

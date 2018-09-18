@@ -17,37 +17,7 @@
 		EF33D909211D427D00560C69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF33D908211D427D00560C69 /* main.m */; };
 		EF33D913211D427E00560C69 /* DevJummumOMUrlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF33D912211D427E00560C69 /* DevJummumOMUrlTests.m */; };
 		EF33D91E211D427E00560C69 /* DevJummumOMUrlUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF33D91D211D427E00560C69 /* DevJummumOMUrlUITests.m */; };
-		EF33D952211D42A600560C69 /* ResetPasswordTimeOut.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D92C211D42A600560C69 /* ResetPasswordTimeOut.php */; };
-		EF33D956211D42A600560C69 /* HtmlContactUs.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D930211D42A600560C69 /* HtmlContactUs.php */; };
-		EF33D957211D42A600560C69 /* JMSSettingGet.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D931211D42A600560C69 /* JMSSettingGet.php */; };
-		EF33D958211D42A600560C69 /* ck.pem in Resources */ = {isa = PBXBuildFile; fileRef = EF33D932211D42A600560C69 /* ck.pem */; };
-		EF33D959211D42A600560C69 /* JMSJummumReceiptGetList.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D933211D42A600560C69 /* JMSJummumReceiptGetList.php */; };
-		EF33D95A211D42A600560C69 /* JMSReceiptMaxModifiedDateGetList.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D934211D42A600560C69 /* JMSReceiptMaxModifiedDateGetList.php */; };
-		EF33D95C211D42A600560C69 /* aps_development.cer in Resources */ = {isa = PBXBuildFile; fileRef = EF33D937211D42A600560C69 /* aps_development.cer */; };
-		EF33D95D211D42A600560C69 /* CertificateSigningRequest.certSigningRequest in Resources */ = {isa = PBXBuildFile; fileRef = EF33D938211D42A600560C69 /* CertificateSigningRequest.certSigningRequest */; };
-		EF33D95E211D42A600560C69 /* ck.pem in Resources */ = {isa = PBXBuildFile; fileRef = EF33D939211D42A600560C69 /* ck.pem */; };
-		EF33D95F211D42A600560C69 /* Certificates.p12 in Resources */ = {isa = PBXBuildFile; fileRef = EF33D93A211D42A600560C69 /* Certificates.p12 */; };
-		EF33D960211D42A600560C69 /* PushCert.pem in Resources */ = {isa = PBXBuildFile; fileRef = EF33D93B211D42A600560C69 /* PushCert.pem */; };
-		EF33D961211D42A600560C69 /* PushKey.pem in Resources */ = {isa = PBXBuildFile; fileRef = EF33D93C211D42A600560C69 /* PushKey.pem */; };
-		EF33D962211D42A600560C69 /* testpush.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D93D211D42A600560C69 /* testpush.php */; };
-		EF33D963211D42A600560C69 /* JMSUserAccountForgotPasswordInsert.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D93E211D42A600560C69 /* JMSUserAccountForgotPasswordInsert.php */; };
-		EF33D964211D42A600560C69 /* jummumOMLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EF33D940211D42A600560C69 /* jummumOMLogo.png */; };
-		EF33D965211D42A600560C69 /* dbConnect.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D941211D42A600560C69 /* dbConnect.php */; };
-		EF33D966211D42A600560C69 /* JMSJummumReceiptUpdate.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D942211D42A600560C69 /* JMSJummumReceiptUpdate.php */; };
-		EF33D967211D42A600560C69 /* JMSReceiptGet.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D943211D42A600560C69 /* JMSReceiptGet.php */; };
-		EF33D968211D42A600560C69 /* JMSJummumReceiptSendToKitchen.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D944211D42A600560C69 /* JMSJummumReceiptSendToKitchen.php */; };
-		EF33D969211D42A600560C69 /* ResetPassword.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D945211D42A600560C69 /* ResetPassword.php */; };
-		EF33D96A211D42A600560C69 /* JMSWriteLog.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D946211D42A600560C69 /* JMSWriteLog.php */; };
-		EF33D96C211D42A600560C69 /* JMSReceiptSummaryGetList.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D948211D42A600560C69 /* JMSReceiptSummaryGetList.php */; };
-		EF33D96D211D42A600560C69 /* transactionLog20180809.log in Resources */ = {isa = PBXBuildFile; fileRef = EF33D949211D42A600560C69 /* transactionLog20180809.log */; };
-		EF33D96E211D42A600560C69 /* JMSUserAccountValidate.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D94A211D42A600560C69 /* JMSUserAccountValidate.php */; };
-		EF33D96F211D42A600560C69 /* JMSOpeningTimeTextGet.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D94B211D42A600560C69 /* JMSOpeningTimeTextGet.php */; };
-		EF33D970211D42A600560C69 /* JMSDisputeCancelInsert.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D94C211D42A600560C69 /* JMSDisputeCancelInsert.php */; };
-		EF33D971211D42A600560C69 /* JMSSettingUpdate.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D94D211D42A600560C69 /* JMSSettingUpdate.php */; };
-		EF33D972211D42A600560C69 /* JMSDisputeReasonGetList.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D94E211D42A600560C69 /* JMSDisputeReasonGetList.php */; };
-		EF33D973211D42A600560C69 /* HtmlTermsOfService.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D94F211D42A600560C69 /* HtmlTermsOfService.php */; };
-		EF33D974211D42A600560C69 /* HtmlEmailTemplateForgotPassword.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D950211D42A600560C69 /* HtmlEmailTemplateForgotPassword.php */; };
-		EF33D975211D42A600560C69 /* JMSDisputeInsert.php in Resources */ = {isa = PBXBuildFile; fileRef = EF33D951211D42A600560C69 /* JMSDisputeInsert.php */; };
+		EF8800B2213D5D410062D9D4 /* DevJummumOM Url in Resources */ = {isa = PBXBuildFile; fileRef = EF8800B1213D5D410062D9D4 /* DevJummumOM Url */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,37 +58,7 @@
 		EF33D919211D427E00560C69 /* DevJummumOMUrlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DevJummumOMUrlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF33D91D211D427E00560C69 /* DevJummumOMUrlUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DevJummumOMUrlUITests.m; sourceTree = "<group>"; };
 		EF33D91F211D427E00560C69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF33D92C211D42A600560C69 /* ResetPasswordTimeOut.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = ResetPasswordTimeOut.php; sourceTree = "<group>"; };
-		EF33D930211D42A600560C69 /* HtmlContactUs.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = HtmlContactUs.php; sourceTree = "<group>"; };
-		EF33D931211D42A600560C69 /* JMSSettingGet.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSSettingGet.php; sourceTree = "<group>"; };
-		EF33D932211D42A600560C69 /* ck.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ck.pem; sourceTree = "<group>"; };
-		EF33D933211D42A600560C69 /* JMSJummumReceiptGetList.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSJummumReceiptGetList.php; sourceTree = "<group>"; };
-		EF33D934211D42A600560C69 /* JMSReceiptMaxModifiedDateGetList.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSReceiptMaxModifiedDateGetList.php; sourceTree = "<group>"; };
-		EF33D937211D42A600560C69 /* aps_development.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_development.cer; sourceTree = "<group>"; };
-		EF33D938211D42A600560C69 /* CertificateSigningRequest.certSigningRequest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CertificateSigningRequest.certSigningRequest; sourceTree = "<group>"; };
-		EF33D939211D42A600560C69 /* ck.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ck.pem; sourceTree = "<group>"; };
-		EF33D93A211D42A600560C69 /* Certificates.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Certificates.p12; sourceTree = "<group>"; };
-		EF33D93B211D42A600560C69 /* PushCert.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PushCert.pem; sourceTree = "<group>"; };
-		EF33D93C211D42A600560C69 /* PushKey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PushKey.pem; sourceTree = "<group>"; };
-		EF33D93D211D42A600560C69 /* testpush.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = testpush.php; sourceTree = "<group>"; };
-		EF33D93E211D42A600560C69 /* JMSUserAccountForgotPasswordInsert.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSUserAccountForgotPasswordInsert.php; sourceTree = "<group>"; };
-		EF33D940211D42A600560C69 /* jummumOMLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jummumOMLogo.png; sourceTree = "<group>"; };
-		EF33D941211D42A600560C69 /* dbConnect.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = dbConnect.php; sourceTree = "<group>"; };
-		EF33D942211D42A600560C69 /* JMSJummumReceiptUpdate.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSJummumReceiptUpdate.php; sourceTree = "<group>"; };
-		EF33D943211D42A600560C69 /* JMSReceiptGet.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSReceiptGet.php; sourceTree = "<group>"; };
-		EF33D944211D42A600560C69 /* JMSJummumReceiptSendToKitchen.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSJummumReceiptSendToKitchen.php; sourceTree = "<group>"; };
-		EF33D945211D42A600560C69 /* ResetPassword.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = ResetPassword.php; sourceTree = "<group>"; };
-		EF33D946211D42A600560C69 /* JMSWriteLog.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSWriteLog.php; sourceTree = "<group>"; };
-		EF33D948211D42A600560C69 /* JMSReceiptSummaryGetList.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSReceiptSummaryGetList.php; sourceTree = "<group>"; };
-		EF33D949211D42A600560C69 /* transactionLog20180809.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = transactionLog20180809.log; sourceTree = "<group>"; };
-		EF33D94A211D42A600560C69 /* JMSUserAccountValidate.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSUserAccountValidate.php; sourceTree = "<group>"; };
-		EF33D94B211D42A600560C69 /* JMSOpeningTimeTextGet.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSOpeningTimeTextGet.php; sourceTree = "<group>"; };
-		EF33D94C211D42A600560C69 /* JMSDisputeCancelInsert.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSDisputeCancelInsert.php; sourceTree = "<group>"; };
-		EF33D94D211D42A600560C69 /* JMSSettingUpdate.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSSettingUpdate.php; sourceTree = "<group>"; };
-		EF33D94E211D42A600560C69 /* JMSDisputeReasonGetList.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSDisputeReasonGetList.php; sourceTree = "<group>"; };
-		EF33D94F211D42A600560C69 /* HtmlTermsOfService.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = HtmlTermsOfService.php; sourceTree = "<group>"; };
-		EF33D950211D42A600560C69 /* HtmlEmailTemplateForgotPassword.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = HtmlEmailTemplateForgotPassword.php; sourceTree = "<group>"; };
-		EF33D951211D42A600560C69 /* JMSDisputeInsert.php */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.php; path = JMSDisputeInsert.php; sourceTree = "<group>"; };
+		EF8800B1213D5D410062D9D4 /* DevJummumOM Url */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "DevJummumOM Url"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +89,7 @@
 		EF33D8E7211D427C00560C69 = {
 			isa = PBXGroup;
 			children = (
-				EF33D92B211D42A600560C69 /* DevJummumOM Url */,
+				EF8800B1213D5D410062D9D4 /* DevJummumOM Url */,
 				EF33D8F2211D427C00560C69 /* DevJummumOMUrl */,
 				EF33D911211D427E00560C69 /* DevJummumOMUrlTests */,
 				EF33D91C211D427E00560C69 /* DevJummumOMUrlUITests */,
@@ -203,60 +143,6 @@
 				EF33D91F211D427E00560C69 /* Info.plist */,
 			);
 			path = DevJummumOMUrlUITests;
-			sourceTree = "<group>";
-		};
-		EF33D92B211D42A600560C69 /* DevJummumOM Url */ = {
-			isa = PBXGroup;
-			children = (
-				EF33D936211D42A600560C69 /* cer */,
-				EF33D932211D42A600560C69 /* ck.pem */,
-				EF33D941211D42A600560C69 /* dbConnect.php */,
-				EF33D930211D42A600560C69 /* HtmlContactUs.php */,
-				EF33D950211D42A600560C69 /* HtmlEmailTemplateForgotPassword.php */,
-				EF33D94F211D42A600560C69 /* HtmlTermsOfService.php */,
-				EF33D93F211D42A600560C69 /* Image */,
-				EF33D94C211D42A600560C69 /* JMSDisputeCancelInsert.php */,
-				EF33D951211D42A600560C69 /* JMSDisputeInsert.php */,
-				EF33D94E211D42A600560C69 /* JMSDisputeReasonGetList.php */,
-				EF33D933211D42A600560C69 /* JMSJummumReceiptGetList.php */,
-				EF33D944211D42A600560C69 /* JMSJummumReceiptSendToKitchen.php */,
-				EF33D942211D42A600560C69 /* JMSJummumReceiptUpdate.php */,
-				EF33D94B211D42A600560C69 /* JMSOpeningTimeTextGet.php */,
-				EF33D943211D42A600560C69 /* JMSReceiptGet.php */,
-				EF33D934211D42A600560C69 /* JMSReceiptMaxModifiedDateGetList.php */,
-				EF33D948211D42A600560C69 /* JMSReceiptSummaryGetList.php */,
-				EF33D931211D42A600560C69 /* JMSSettingGet.php */,
-				EF33D94D211D42A600560C69 /* JMSSettingUpdate.php */,
-				EF33D93E211D42A600560C69 /* JMSUserAccountForgotPasswordInsert.php */,
-				EF33D94A211D42A600560C69 /* JMSUserAccountValidate.php */,
-				EF33D946211D42A600560C69 /* JMSWriteLog.php */,
-				EF33D945211D42A600560C69 /* ResetPassword.php */,
-				EF33D92C211D42A600560C69 /* ResetPasswordTimeOut.php */,
-				EF33D93D211D42A600560C69 /* testpush.php */,
-				EF33D949211D42A600560C69 /* transactionLog20180809.log */,
-			);
-			path = "DevJummumOM Url";
-			sourceTree = "<group>";
-		};
-		EF33D936211D42A600560C69 /* cer */ = {
-			isa = PBXGroup;
-			children = (
-				EF33D937211D42A600560C69 /* aps_development.cer */,
-				EF33D938211D42A600560C69 /* CertificateSigningRequest.certSigningRequest */,
-				EF33D939211D42A600560C69 /* ck.pem */,
-				EF33D93A211D42A600560C69 /* Certificates.p12 */,
-				EF33D93B211D42A600560C69 /* PushCert.pem */,
-				EF33D93C211D42A600560C69 /* PushKey.pem */,
-			);
-			path = cer;
-			sourceTree = "<group>";
-		};
-		EF33D93F211D42A600560C69 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				EF33D940211D42A600560C69 /* jummumOMLogo.png */,
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,40 +248,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF33D958211D42A600560C69 /* ck.pem in Resources */,
-				EF33D972211D42A600560C69 /* JMSDisputeReasonGetList.php in Resources */,
-				EF33D964211D42A600560C69 /* jummumOMLogo.png in Resources */,
-				EF33D95A211D42A600560C69 /* JMSReceiptMaxModifiedDateGetList.php in Resources */,
-				EF33D970211D42A600560C69 /* JMSDisputeCancelInsert.php in Resources */,
-				EF33D968211D42A600560C69 /* JMSJummumReceiptSendToKitchen.php in Resources */,
-				EF33D96A211D42A600560C69 /* JMSWriteLog.php in Resources */,
-				EF33D962211D42A600560C69 /* testpush.php in Resources */,
-				EF33D96F211D42A600560C69 /* JMSOpeningTimeTextGet.php in Resources */,
-				EF33D960211D42A600560C69 /* PushCert.pem in Resources */,
-				EF33D956211D42A600560C69 /* HtmlContactUs.php in Resources */,
+				EF8800B2213D5D410062D9D4 /* DevJummumOM Url in Resources */,
 				EF33D906211D427D00560C69 /* LaunchScreen.storyboard in Resources */,
-				EF33D95E211D42A600560C69 /* ck.pem in Resources */,
-				EF33D95F211D42A600560C69 /* Certificates.p12 in Resources */,
 				EF33D903211D427D00560C69 /* Assets.xcassets in Resources */,
-				EF33D973211D42A600560C69 /* HtmlTermsOfService.php in Resources */,
-				EF33D96D211D42A600560C69 /* transactionLog20180809.log in Resources */,
-				EF33D974211D42A600560C69 /* HtmlEmailTemplateForgotPassword.php in Resources */,
-				EF33D95D211D42A600560C69 /* CertificateSigningRequest.certSigningRequest in Resources */,
-				EF33D963211D42A600560C69 /* JMSUserAccountForgotPasswordInsert.php in Resources */,
-				EF33D96E211D42A600560C69 /* JMSUserAccountValidate.php in Resources */,
-				EF33D959211D42A600560C69 /* JMSJummumReceiptGetList.php in Resources */,
-				EF33D965211D42A600560C69 /* dbConnect.php in Resources */,
-				EF33D95C211D42A600560C69 /* aps_development.cer in Resources */,
-				EF33D96C211D42A600560C69 /* JMSReceiptSummaryGetList.php in Resources */,
-				EF33D969211D42A600560C69 /* ResetPassword.php in Resources */,
-				EF33D975211D42A600560C69 /* JMSDisputeInsert.php in Resources */,
-				EF33D967211D42A600560C69 /* JMSReceiptGet.php in Resources */,
-				EF33D957211D42A600560C69 /* JMSSettingGet.php in Resources */,
 				EF33D901211D427C00560C69 /* Main.storyboard in Resources */,
-				EF33D966211D42A600560C69 /* JMSJummumReceiptUpdate.php in Resources */,
-				EF33D952211D42A600560C69 /* ResetPasswordTimeOut.php in Resources */,
-				EF33D971211D42A600560C69 /* JMSSettingUpdate.php in Resources */,
-				EF33D961211D42A600560C69 /* PushKey.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

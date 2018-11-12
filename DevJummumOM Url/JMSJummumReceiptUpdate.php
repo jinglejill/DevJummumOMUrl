@@ -156,6 +156,10 @@
     mysqli_commit($con);
     
     
+    $sql = "select * from Receipt where receiptID = '$receiptID';";
+    $selectedRow = getSelectedRow($sql);
+    $memberID = $selectedRow[0]["MemberID"];
+    $orderNo = $selectedRow[0]["ReceiptNoID"];
     
     if($status == 11)
     {
@@ -169,20 +173,15 @@
             array_push($arrPushSyncDeviceTokenAdmin,$pushSyncDeviceTokenAdmin);
         }
         
-        $msg = "negotiation arrive!";
+        $msgAdmin = "Order no.$orderNo negotiation arrive!";
         $category = "admin";
         $contentAvailable = 1;
         $data = array("receiptID" => $receiptID);
-        sendPushNotificationAdmin($arrPushSyncDeviceTokenAdmin,$title,$msg,$category,$contentAvailable,$data);
+        sendPushNotificationAdmin($arrPushSyncDeviceTokenAdmin,$title,$msgAdmin,$category,$contentAvailable,$data);
     }
     else
     {
         //send noti to customer
-        $sql = "select * from Receipt where receiptID = '$receiptID';";
-        $selectedRow = getSelectedRow($sql);
-        $memberID = $selectedRow[0]["MemberID"];
-        
-        
         $sql = "select login.DeviceToken,login.ModifiedDate,login.Username from useraccount left join login on useraccount.username = login.username where useraccount.UserAccountID = '$memberID' and login.status = '1' order by login.modifiedDate desc;";
         $selectedRow = getSelectedRow($sql);
         $customerDeviceToken = $selectedRow[0]["DeviceToken"];
@@ -194,6 +193,7 @@
         {
             $arrCustomerDeviceToken = array();
             array_push($arrCustomerDeviceToken,$customerDeviceToken);
+            $msgCust = "Order no.$orderNo $msgCust";
             $category = "updateStatus";
             $contentAvailable = 1;
             $data = array("receiptID" => $receiptID);
@@ -217,7 +217,7 @@
         }
     }
     
-
+    $msg = "Order no.$orderNo $msg";
     $contentAvailable = 1;
     $data = array("receiptID" => $receiptID);
     sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentAvailable,$data);

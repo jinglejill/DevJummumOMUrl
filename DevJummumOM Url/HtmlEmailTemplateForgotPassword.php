@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td>
-                <a href="./resetpassword.php?codereset=#codereset#" rel="noopener noreferrer" target="_blank">Reset password</a>
+                <a href="#jummumFilePath#/resetpassword.php?codereset=#codereset#" rel="noopener noreferrer" target="_blank">Reset password</a>
             </td>
         </tr>
         <tr>

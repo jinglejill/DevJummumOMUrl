@@ -123,6 +123,12 @@
     
     
     //push sync to other device
+    $sql = "select * from Receipt where receiptID = '$receiptID';";
+    $selectedRow = getSelectedRow($sql);
+    $memberID = $selectedRow[0]["MemberID"];
+    $orderNo = $selectedRow[0]["ReceiptNoID"];
+    
+    
     $pushSyncDeviceTokenReceiveOrder = array();
     $sql = "select * from $jummumOM.device left join $jummumOM.Branch on $jummumOM.device.DbName = $jummumOM.Branch.DbName where branchID = '$branchID';";
     $selectedRow = getSelectedRow($sql);
@@ -136,6 +142,7 @@
         }
     }    
     
+    $msg = "Order no.$orderNo $msg";
     $contentAvailable = 1;
     $data = array("receiptID" => $receiptID);
     sendPushNotificationJummumOM($pushSyncDeviceTokenReceiveOrder,$title,$msg,$category,$contentAvailable,$data);
@@ -145,9 +152,7 @@
     
     
     //send noti to customer
-    $sql = "select * from Receipt where receiptID = '$receiptID';";
-    $selectedRow = getSelectedRow($sql);
-    $memberID = $selectedRow[0]["MemberID"];
+    
     
     
     $sql = "select login.DeviceToken,login.ModifiedDate,login.Username from useraccount left join login on useraccount.username = login.username where useraccount.UserAccountID = '$memberID' and login.status = '1' order by login.modifiedDate desc;";

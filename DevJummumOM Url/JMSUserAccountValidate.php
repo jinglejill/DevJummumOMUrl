@@ -240,19 +240,35 @@
     //-----**********
     
     
+    //printer
+    $sqlAll .= "select * from $dbName.Printer;";
+    $sqlAll .= "select * from $dbName.PrinterMenu;";
+    
+    
     //branch-----**********
-    $sql = "select * from $jummumOM.Branch where branchID = '$branchID'";
+    $sql = "select * from $jummumOM.Branch where branchID = '$branchID';";
     $sqlAll .= $sql;
     //-----**********
-    
-    
-    
-    
     
     
     /* execute multi query */
     $dataJson = executeMultiQueryArray($sqlAll);
     
+    
+    //note word เพิ่ม
+    $sql = "select * from $dbName.setting where keyName = 'wordAdd'";
+    $selectedRow = getSelectedRow($sql);
+    $wordAdd = $selectedRow[0]["Value"];
+
+
+    //note word ไม่ใส่
+    $sql = "select * from $dbName.setting where keyName = 'wordNo'";
+    $selectedRow = getSelectedRow($sql);
+    $wordNo = $selectedRow[0]["Value"];
+    
+    
+    $dataJson[sizeof($dataJson)-1][0]->WordAdd = $wordAdd?$wordAdd:"เพิ่ม";
+    $dataJson[sizeof($dataJson)-1][0]->WordNo = $wordNo?$wordNo:"ไม่ใส่";
     
     
     //do script successful
